@@ -37,6 +37,9 @@ public class SimpleMovingAverage implements IMovingAverage {
 		currentSumLastNElements += element;
 		int currListSize = integerList.size();
 		if (currListSize > numberElementsToAverage) {
+			//Here, our current list exceeds the number of elements to calculate a moving average of.
+			//Therefore, we subtract the N+1 previous element that was added in. We can easily calculate 
+			//and get this element using our arraylist.
 			currentSumLastNElements-=integerList.get(integerList.size()-numberElementsToAverage-1);
 		}
 	}
