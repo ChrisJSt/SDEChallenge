@@ -10,7 +10,9 @@ public class App {
         	IMovingAverage simpleMovingAverage = new SimpleMovingAverage(numElementsToAvg);
             for (Double elt : sampleElements) {
             	simpleMovingAverage.addElement(elt);
-                System.out.println("Added number = " + elt + ", Simple Moving Average = " + simpleMovingAverage.getAverage());
+            	System.out.println("Just added number " + elt);
+            	System.out.println("The current moving average of the last " + numElementsToAvg + 
+            			" numbers is " + simpleMovingAverage.getAverage());
             }
             System.out.println("----");
         }
