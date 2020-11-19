@@ -10,20 +10,20 @@ public class SimpleMovingAverage implements IMovingAverage {
 	 */
 	private final int numberElementsToAverage;
 	private Double currentSumLastNElements;
-	private List<Double> integerList;
+	private List<Double> elementList;
 	
 	/*
 	 * Constructor that takes an integer N which determines
 	 * how many elements to calculate the moving average of
 	 */
-	public SimpleMovingAverage(int N) throws Exception {
-		if (N<1) {
+	public SimpleMovingAverage(int numElementsToAvg) throws Exception {
+		if (numElementsToAvg<1) {
 			System.out.println("Number of elements to average can't be less than 1!");
 			throw new Exception();
 		}
-		this.numberElementsToAverage = N;
+		this.numberElementsToAverage = numElementsToAvg;
 		this.currentSumLastNElements = 0.0;
-		integerList = new ArrayList<Double>();
+		elementList = new ArrayList<Double>();
 		
 	}
 	
@@ -33,14 +33,14 @@ public class SimpleMovingAverage implements IMovingAverage {
 	 */
 	@Override
 	public void addElement(Double element) {
-		integerList.add(element);
+		elementList.add(element);
 		currentSumLastNElements += element;
-		int currListSize = integerList.size();
+		int currListSize = elementList.size();
 		if (currListSize > numberElementsToAverage) {
 			//Here, our current list exceeds the number of elements to calculate a moving average of.
 			//Therefore, we subtract the N+1 previous element that was added in. We can easily calculate 
 			//and get this element using our arraylist.
-			currentSumLastNElements-=integerList.get(integerList.size()-numberElementsToAverage-1);
+			currentSumLastNElements-=elementList.get(elementList.size()-numberElementsToAverage-1);
 		}
 	}
 	
@@ -57,14 +57,14 @@ public class SimpleMovingAverage implements IMovingAverage {
 	 */
 	@Override
 	public List<Double> getElements() {
-		return integerList;
+		return elementList;
 	}
 	
 	/*
 	 * Retrieve an element based off of the index it was added in
 	 */
 	public Double getElement(int index) {
-		return integerList.get(index);
+		return elementList.get(index);
 	}
 	
 }
